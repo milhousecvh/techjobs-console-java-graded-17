@@ -130,6 +130,7 @@ public class TechJobs {
                 }
 
                 System.out.println("*****");
+
             }
 
         } else {
