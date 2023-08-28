@@ -69,36 +69,48 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
-        value = value.toLowerCase();
-
-        if (column.equals("all")) {
-            for (HashMap<String, String> allJob : allJobs) {
-                String newJob = "";
-                for (Map.Entry<String, String> job : allJob.entrySet()) {
-                    Object jobValue = job.getValue();
-                    newJob = newJob + " " + jobValue;
-
-//            value = value.toLowerCase();
-
-                    if (newJob.contains(value)) {
-                        jobs.add(allJob);
-                    }
-                }
-            }
-            return jobs;
-        } else {
-            for (HashMap<String, String> row : allJobs) {
-                String aValue = row.get(column);
-                aValue = aValue.toLowerCase();
-
-                if (aValue.contains(value)) {
-                    jobs.add(row);
-                }
+        for (HashMap<String, String> row : allJobs) {
+            String aValue = row.get(column);
+            aValue = aValue.toLowerCase();
+            value = value.toLowerCase();
+            if (aValue.contains(value)) {
+                jobs.add(row);
             }
         }
         return jobs;
     }
+//      old edit, trying to see which one actually works.....
+//        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+//
+//        value = value.toLowerCase();
+//
+//        if (column.equals("all")) {
+//            for (HashMap<String, String> allJob : allJobs) {
+//                String newJob = "";
+//                for (Map.Entry<String, String> job : allJob.entrySet()) {
+//                    Object jobValue = job.getValue();
+//                    newJob = newJob + " " + jobValue;
+//
+////            value = value.toLowerCase();
+//
+//                    if (newJob.contains(value)) {
+//                        jobs.add(allJob);
+//                    }
+//                }
+//            }
+//            return jobs;
+//        } else {
+//            for (HashMap<String, String> row : allJobs) {
+//                String aValue = row.get(column);
+//                aValue = aValue.toLowerCase();
+//
+//                if (aValue.contains(value)) {
+//                    jobs.add(row);
+//                }
+//            }
+//        }
+//        return jobs;
+//    }
     /**
      * Search all columns for the given term
      *

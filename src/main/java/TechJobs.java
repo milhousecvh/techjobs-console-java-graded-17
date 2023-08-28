@@ -87,7 +87,7 @@ public class TechJobs {
 
         do {
 
-            System.out.println(menuHeader);
+            System.out.println("\n" + menuHeader);
 
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
