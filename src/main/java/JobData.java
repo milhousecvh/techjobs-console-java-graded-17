@@ -58,6 +58,7 @@ public class JobData {
      * inclusion of the search term.
      * For example, searching for employer "Enterprise" will include results
      * with "Enterprise Holdings, Inc".
+     *
      * @param column   Column that should be searched.
      * @param value Value of teh field to search for
      * @return List of all jobs matching the criteria
