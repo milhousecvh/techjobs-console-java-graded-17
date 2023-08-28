@@ -70,20 +70,35 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        value = value.toLowerCase();
 
-            String aValue = row.get(column);
-            aValue = aValue.toLowerCase();
-            value = value.toLowerCase();
+        if (column.equals("all")) {
+            for (HashMap<String, String> allJob : allJobs) {
+                String newJob = "";
+                for (Map.Entry<String, String> job : allJob.entrySet()) {
+                    Object jobValue = job.getValue();
+                    newJob = newJob + " " + jobValue;
 
-            if (aValue.contains(value)) {
-                jobs.add(row);
+//            value = value.toLowerCase();
+
+                    if (newJob.contains(value)) {
+                        jobs.add(allJob);
+                    }
+                }
+            }
+            return jobs;
+        } else {
+            for (HashMap<String, String> row : allJobs) {
+                String aValue = row.get(column);
+                aValue = aValue.toLowerCase();
+
+                if (aValue.contains(value)) {
+                    jobs.add(row);
+                }
             }
         }
-
         return jobs;
     }
-
     /**
      * Search all columns for the given term
      *
@@ -128,7 +143,7 @@ public class JobData {
             Reader in = new FileReader(DATA_FILE);
             CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
             List<CSVRecord> records = parser.getRecords();
-            Integer numberOfColumns = records.get(0).size();
+            int numberOfColumns = records.get(0).size();
             String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
             allJobs = new ArrayList<>();
